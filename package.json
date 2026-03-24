@@ -1,0 +1,33 @@
+{
+  "name": "design-system-extractor",
+  "version": "0.1.0",
+  "description": "Extract design tokens from React codebases with AI-powered semantic naming",
+  "type": "module",
+  "bin": {
+    "design-system-extractor": "./dist/cli/index.js"
+  },
+  "scripts": {
+    "dev": "tsx watch src/cli/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.29.2",
+    "@babel/traverse": "^7.29.0",
+    "boxen": "^8.0.1",
+    "chalk": "^5.6.2",
+    "cli-table3": "^0.6.5",
+    "commander": "^14.0.3",
+    "fast-glob": "^3.3.3",
+    "ora": "^9.3.0"
+  },
+  "devDependencies": {
+    "@types/babel__parser": "^7.0.0",
+    "@types/babel__traverse": "^7.28.0",
+    "@types/node": "^25.5.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.1"
+  }
+}
