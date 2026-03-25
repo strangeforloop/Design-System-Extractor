@@ -10,7 +10,7 @@
     "dev": "tsx watch src/cli/index.ts",
     "build": "tsc -p tsconfig.json",
     "test": "vitest",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit -p tsconfig.test.json"
   },
   "dependencies": {
     "@babel/parser": "^7.29.2",

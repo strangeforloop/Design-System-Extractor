@@ -1,15 +1,10 @@
+import type { DesignValue } from "../parser/types.js";
+
 /**
  * A raw design value extracted from source code before clustering.
  * Used during scanning and parsing to track what was found and where.
  */
-export interface DesignValue {
-  type: "color" | "spacing" | "typography";
-  value: string;
-  file: string;
-  line: number;
-  context: string;
-  occurrences: number;
-}
+export type { DesignValue };
 
 /**
  * A concrete location where a token/value is used in code.
