@@ -1,10 +1,16 @@
-import type { DesignValue } from "../parser/types.js";
-
 /**
  * A raw design value extracted from source code before clustering.
- * Used during scanning and parsing to track what was found and where.
+ * `occurrences` can be omitted for freshly extracted values and later filled
+ * during aggregation/counting stages.
  */
-export type { DesignValue };
+export interface DesignValue {
+  type: "color" | "spacing" | "typography";
+  value: string;
+  file: string;
+  line: number;
+  context: string;
+  occurrences?: number;
+}
 
 /**
  * A concrete location where a token/value is used in code.
@@ -17,16 +23,22 @@ export interface UsageLocation {
   snippet: string;
 }
 
-/**
- * A group of similar extracted values collapsed into one representative value.
- * Used after normalization/clustering to reduce near-duplicate token candidates.
- */
 export interface Cluster {
+  type: "color" | "spacing" | "typography";
   representative: string;
-  variations: string[];
-  totalOccurrences: number;
-  usedIn: string[];
-  category: "color" | "spacing" | "typography";
+  values: DesignValue[];
+  confidence: number;
+  metadata: {
+    colorSpace?: "hex" | "rgb" | "oklch";
+    labValue?: { L: number; a: number; b: number };
+    unit?: "px" | "rem" | "em";
+    gridPattern?: "4px" | "8px" | null;
+    variations?: Array<{
+      value: string;
+      occurrences: number;
+      files: string[];
+    }>;
+  };
 }
 
 /**
